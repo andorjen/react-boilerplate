@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-01/schema#",
+  "$id": "http://dovenmuehle.com/inputContent.schema.json",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

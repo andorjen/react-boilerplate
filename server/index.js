@@ -12,18 +12,30 @@ const ngrok =
     ? require('ngrok')
     : false;
 const { resolve } = require('path');
+
+const { NotFoundError } = require('./expressError');
+const contentRoutes = require('./routes/contents');
+
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+// ############################## BACKEND API #############################
+// allow both form-encoded and json body parsing
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// ################################ ROUTES ################################
+
+app.use('/api/contents', contentRoutes);
+
+// ################################ SETUP #################################
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
 
-// get the intended host and port number, use localhost and port 3000 if not provided
+// get the intended host and port number,
+// use localhost and port 3000 if not provided
 const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
@@ -35,6 +47,26 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
+// ############################ ERROR HANDLER #############################
+/** Handle 404 errors -- this matches everything */
+app.use((req, res, next) => next(new NotFoundError()));
+
+/** Generic error handler; anything unhandled goes here. */
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  if (process.env.NODE_ENV !== 'test') {
+    // eslint-disable-next-line no-console
+    console.error('errors', err.stack);
+  }
+  const status = err.status || 500;
+  const { message } = err;
+
+  return res.status(status).json({
+    error: { message, status },
+  });
+});
+
+// ############################ START APP ################################
 // Start your app.
 app.listen(port, host, async err => {
   if (err) {
