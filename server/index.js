@@ -1,6 +1,7 @@
 /* eslint consistent-return:0 import/order:0 */
 
 const express = require('express');
+const cors = require('cors');
 const logger = require('./logger');
 
 const argv = require('./argv');
@@ -19,15 +20,16 @@ const contentRoutes = require('./routes/contents');
 const app = express();
 
 // ############################## BACKEND API #############################
+app.use(cors());
 // allow both form-encoded and json body parsing
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ################################ ROUTES ################################
+// ############################ BACKEND ROUTES ###########################
 
 app.use('/api/contents', contentRoutes);
 
-// ################################ SETUP #################################
+// ############################# APP SETUP ###############################
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),

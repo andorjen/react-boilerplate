@@ -8,21 +8,21 @@ const inputContentSchema = require('../schemas/inputContent.json');
 
 const router = new express.Router();
 
+// using require to synchronously load data here as current data is an array;
+// if using database, need to use ORM and change view functions to async;
 const contentCollection = require('../data/data');
 
-/** GET /contents  =>  { contents }
+/** GET /api/contents  =>  { contents }
  *  contents: ["string1", "string2", "string3", ...]
  */
 // eslint-disable-next-line no-unused-vars
-router.get('/', function getAllContents(req, res, next) {
-  return res.json({ contents: contentCollection });
-});
+router.get('/', (req, res, next) => res.json({ contents: contentCollection }));
 
-/** POST /contents  => { content }
+/** POST /api/contents/add  => { content }
  *  adds a string to contents, contents is an array of strings
  */
 // eslint-disable-next-line no-unused-vars
-router.post('/add', function postNewString(req, res, next) {
+router.post('/add', (req, res, next) => {
   const validator = jsonschema.validate(req.body, inputContentSchema);
 
   if (!validator.valid) {
