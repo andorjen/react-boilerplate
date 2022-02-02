@@ -17,6 +17,7 @@ import {
   makeSelectContents,
   makeSelectLoading,
   makeSelectError,
+  makeSelectNeedsLoading,
 } from './selectors';
 
 import CardList from '../../components/CardList';
@@ -28,23 +29,26 @@ import { requestAllContents } from './actions';
 import homeReducer from './reducer';
 import homeSaga from './saga';
 
-function HomePage(props) {
+function HomePage({ needsLoading, isLoading, error, contents, getAllData }) {
   useInjectReducer({ key: 'homeReducer', reducer: homeReducer });
   useInjectSaga({ key: 'homeSaga', saga: homeSaga });
   useEffect(() => {
-    props.getAllData();
+    if (needsLoading) getAllData();
   }, []);
 
   return (
     <div>
       <NavBar />
-      {props.isLoading && <LoadingIndicator />}
-      {props.isLoading && <h2>Loading...</h2>}
-      {props.error && <h3>{props.error.message}</h3>}
+      <div style={{ textAlign: 'center' }}>
+        {isLoading && <LoadingIndicator />}
+        {isLoading && <h2>Loading...</h2>}
+        {error && <h3>{error.message}</h3>}
+        {!error && !isLoading && <h2>Here are all the cards</h2>}
+      </div>
 
-      {!props.error && props.contents.length > 0 && (
+      {!error && contents.length > 0 && (
         <CardList
-          contents={props.contents}
+          contents={contents}
           onClick={() => {
             console.log('clicked');
           }}
@@ -59,11 +63,13 @@ HomePage.propTypes = {
   error: PropTypes.object,
   contents: PropTypes.array,
   getAllData: PropTypes.func,
+  needsLoading: PropTypes.bool,
 };
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectLoading(),
   error: makeSelectError(),
   contents: makeSelectContents(),
+  needsLoading: makeSelectNeedsLoading(),
 });
 
 function mapDispatchToProps(dispatch) {

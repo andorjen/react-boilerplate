@@ -1,7 +1,7 @@
 /* eslint consistent-return:0 import/order:0 */
 
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const logger = require('./logger');
 
 const argv = require('./argv');
@@ -20,10 +20,11 @@ const contentRoutes = require('./routes/contents');
 const app = express();
 
 // ############################## BACKEND API #############################
-app.use(cors());
-// allow both form-encoded and json body parsing
+// option to allow CORS
+// app.use(cors());
+
+// allow  json body parsing
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // ############################ BACKEND ROUTES ###########################
 
@@ -62,7 +63,7 @@ app.use((err, req, res, next) => {
   }
   const status = err.status || 500;
   const { message } = err;
-
+  console.log('hit express error handler', status, message);
   return res.status(status).json({
     error: { message, status },
   });

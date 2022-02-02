@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest, delay } from 'redux-saga/effects';
 import fetchAllContents from './api';
 import {
   LOAD_ALL_CONTENTS,
@@ -8,6 +8,7 @@ import {
 
 function* fetchAllData() {
   try {
+    yield delay(1000);
     const res = yield call(fetchAllContents);
     yield put({
       type: LOAD_ALL_CONTENTS_SUCCESS,

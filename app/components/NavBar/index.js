@@ -5,7 +5,7 @@ import Wrapper from './Wrapper';
 /** */
 function NavBar() {
   const Nav = styled.nav`
-    background-color: rgb(84, 2, 209);
+    background-color: rgb(34, 2, 73);
     padding: 0.5em;
     font-size: 1.2em;
     display: flex;

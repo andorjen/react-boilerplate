@@ -27,9 +27,17 @@ const makeSelectContents = () =>
     globalState => globalState.contents,
   );
 
+const makeSelectNeedsLoading = () =>
+  createSelector(
+    selectHome,
+    globalState => globalState.needsLoading,
+  );
+
 export {
+  selectHome,
   makeSelectLocation,
   makeSelectLoading,
   makeSelectError,
   makeSelectContents,
+  makeSelectNeedsLoading,
 };

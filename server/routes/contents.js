@@ -24,7 +24,6 @@ router.get('/', (req, res, next) => res.json({ contents: contentCollection }));
 // eslint-disable-next-line no-unused-vars
 router.post('/add', (req, res, next) => {
   const validator = jsonschema.validate(req.body, inputContentSchema);
-
   if (!validator.valid) {
     const errs = validator.errors.map(e => e.stack);
     throw new BadRequestError(errs);

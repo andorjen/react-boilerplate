@@ -5,9 +5,11 @@ import Wrapper from './Wrapper';
 
 function Card({ content, onClick }) {
   const StyledCard = styled.div`
-    background-color: rgb(255, 158, 0);
+    color: rgb(34, 2, 73);
+    background-color: rgba(2, 219, 125, 0.7);
     border-radius: 0.4em;
     padding: 0.8em 1em;
+    box-shadow: 0.4em 0.2em 0.2em rgba(2, 219, 125, 0.2);
   `;
 
   return (
