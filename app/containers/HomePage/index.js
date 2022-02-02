@@ -48,7 +48,7 @@ function HomePage({ needsLoading, isLoading, error, contents, getAllData }) {
 
       {!error && contents.length > 0 && (
         <CardList
-          contents={contents}
+          contents={contents.reverse()}
           onClick={() => {
             console.log('clicked');
           }}

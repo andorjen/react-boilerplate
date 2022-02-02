@@ -2,6 +2,7 @@ import {
   LOAD_ALL_CONTENTS,
   LOAD_ALL_CONTENTS_ERROR,
   LOAD_ALL_CONTENTS_SUCCESS,
+  HOME_RELOAD_NEEDED,
 } from './constants';
 
 // The initial state of the HomePage
@@ -30,7 +31,7 @@ function homeReducer(state = initialState, { type, payload }) {
         needsLoading: true,
       };
 
-    case 'HOME_RELOAD_NEEDED':
+    case HOME_RELOAD_NEEDED:
       return {
         ...state,
         needsLoading: true,

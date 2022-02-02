@@ -9,6 +9,7 @@ function NavBar() {
     padding: 0.5em;
     font-size: 1.2em;
     display: flex;
+    position: sticky;
 
     & a {
       padding: 0.5em 0;

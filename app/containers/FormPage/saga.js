@@ -6,6 +6,7 @@ import {
   SUBMIT_FORM_SUCCESS,
 } from './constants';
 
+import { HOME_RELOAD_NEEDED } from '../HomePage/constants';
 import { makeSelectFormInput } from './selectors';
 
 function* postNewContentToDatabase() {
@@ -14,7 +15,7 @@ function* postNewContentToDatabase() {
     const res = yield call(postNewContent, data);
     yield delay(1000);
     yield put({ type: SUBMIT_FORM_SUCCESS, payload: { content: res.content } });
-    yield put({ type: 'HOME_RELOAD_NEEDED' });
+    yield put({ type: HOME_RELOAD_NEEDED });
   } catch (err) {
     yield put({ type: SUBMIT_FORM_ERROR, payload: { error: err } });
   }

@@ -63,7 +63,6 @@ app.use((err, req, res, next) => {
   }
   const status = err.status || 500;
   const { message } = err;
-  console.log('hit express error handler', status, message);
   return res.status(status).json({
     error: { message, status },
   });

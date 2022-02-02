@@ -33,10 +33,17 @@ const makeSelectError = () =>
     globalState => globalState.error,
   );
 
+const makeSelectContent = () =>
+  createSelector(
+    selectForm,
+    globalState => globalState.content,
+  );
+
 export {
   selectForm,
   makeSelectFormInput,
   makeSelectIsSubmitting,
   makeSelectHasSubmitted,
   makeSelectError,
+  makeSelectContent,
 };
