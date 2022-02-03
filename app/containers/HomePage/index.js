@@ -50,6 +50,7 @@ const HomeHeader = styled.div`
 const PaddedWrapper = styled.div`
   padding: 1em;
 `;
+/** Renders Home Page */
 function HomePage({
   needsLoading,
   isLoading,

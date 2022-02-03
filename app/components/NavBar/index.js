@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Wrapper from './Wrapper';
+
 /** */
 function NavBar() {
   const Nav = styled.nav`
+    text-align: center;
     background-color: rgb(34, 2, 73);
     padding: 0.5em;
     font-size: 1.2em;
@@ -26,30 +27,28 @@ function NavBar() {
     }
   `;
   return (
-    <Wrapper>
-      <Nav>
-        <NavLink
-          exact
-          to="/"
-          activeStyle={{
-            backgroundColor: 'rgba(140, 71, 245, 0.4)',
-            fontWeight: 'bold',
-          }}
-        >
-          {'Home'}
-        </NavLink>
-        <NavLink
-          exact
-          to="/add"
-          activeStyle={{
-            backgroundColor: 'rgba(140, 71, 245, 0.4)',
-            fontWeight: 'bold',
-          }}
-        >
-          {'Add A Card'}
-        </NavLink>
-      </Nav>
-    </Wrapper>
+    <Nav>
+      <NavLink
+        exact
+        to="/"
+        activeStyle={{
+          backgroundColor: 'rgba(140, 71, 245, 0.4)',
+          fontWeight: 'bold',
+        }}
+      >
+        {'Home'}
+      </NavLink>
+      <NavLink
+        exact
+        to="/add"
+        activeStyle={{
+          backgroundColor: 'rgba(140, 71, 245, 0.4)',
+          fontWeight: 'bold',
+        }}
+      >
+        {'Add A Card'}
+      </NavLink>
+    </Nav>
   );
 }
 

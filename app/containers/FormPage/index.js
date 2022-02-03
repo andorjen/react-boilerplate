@@ -5,7 +5,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
@@ -23,7 +23,7 @@ import {
 } from './selectors';
 
 import { changeFormInput, submitForm } from './actions';
-
+import { RELOAD_FORM_PAGE } from './constants';
 import NavBar from '../../components/NavBar';
 import Button from '../../components/Button';
 import { formReducer } from './reducer';
@@ -95,10 +95,13 @@ function FormPage({
   changeInput,
   error,
   content,
+  reloadPage,
 }) {
   useInjectReducer({ key: 'formReducer', reducer: formReducer });
   useInjectSaga({ key: 'formSaga', saga: formSaga });
-
+  useEffect(() => {
+    reloadPage();
+  }, []);
   return (
     <div>
       <NavBar />
@@ -162,6 +165,7 @@ FormPage.propTypes = {
   changeInput: PropTypes.func,
   error: PropTypes.object,
   content: PropTypes.string,
+  reloadPage: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -180,6 +184,9 @@ function mapDispatchToProps(dispatch) {
     postData: evt => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(submitForm());
+    },
+    reloadPage: () => {
+      dispatch({ type: RELOAD_FORM_PAGE });
     },
   };
 }

@@ -3,6 +3,7 @@ import {
   SUBMIT_FORM_SUCCESS,
   SUBMIT_FORM_ERROR,
   CHANGE_FORM_INPUT,
+  RELOAD_FORM_PAGE,
 } from './constants';
 
 // The initial state of the FormPage
@@ -39,6 +40,8 @@ function formReducer(state = initialState, { type, payload }) {
         error: payload.error,
         content: '',
       };
+    case RELOAD_FORM_PAGE:
+      return { ...initialState };
 
     default:
       return state;
