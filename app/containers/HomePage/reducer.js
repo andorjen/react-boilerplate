@@ -10,6 +10,7 @@ export const initialState = {
   isLoading: false,
   needsLoading: true,
   contents: [],
+  lastAdded: '',
 };
 
 function homeReducer(state = initialState, { type, payload }) {
@@ -36,6 +37,7 @@ function homeReducer(state = initialState, { type, payload }) {
         ...state,
         needsLoading: true,
       };
+
     default:
       return state;
   }

@@ -6,11 +6,11 @@
  */
 
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-
 import styled from 'styled-components';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -32,62 +32,59 @@ import formSaga from './saga';
 const FormPageWrapper = styled.div`
   background-color: rgba(2, 219, 125, 0.7);
   min-height: 100vh;
-  padding: 4em;
-  text-align: center;
+  padding: 10%;
   font-family: 'Open Sans', sans-serif;
 `;
 
 const FormWrapper = styled.div`
+  text-align: center;
   background-color: white;
   padding: 1em;
   border-radius: 0.4em;
-  width: 60%;
-  margin-left: 20%;
-  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Open Sans', sans-serif;
 `;
 
-const InputBox = styled.textarea`
+const FormHeader = styled.h2`
+  background-color: rgb(250, 234, 112);
+  padding: 0.5em;
+  border-radius: 0.2em;
   width: 60%;
+`;
+
+const StyledForm = styled.form`
+  width: 60%;
+`;
+const FormLabel = styled.div`
+  text-align: left;
+  margin: 1em 0 0.3em 0;
+`;
+
+const FormInput = styled.textarea`
+  text-align: left;
+  width: 100%;
   height: 8em;
 `;
-
-const FormLabelWrapper = styled.div`
-  text-align: left;
-  width: 60%;
-  margin-left: 20%;
-  padding-top: 1em;
-  padding-bottom: 0.5em;
-`;
-
-const InlineBlock = styled.div`
-  display: inline-block;
-  max-height: 100%;
-  margin-left: 1em;
-`;
-
 const SuccessMessageContainer = styled.div`
   background-color: rgb(201, 242, 202);
   text-align: center;
-  font-size: 0.9em;
-  padding: 0.2em;
+  font-size: 1.2em;
+  padding: 0.3em;
   border-radius: 0.2em;
+  font-family: 'Open Sans', sans-serif;
   width: 60%;
-  margin-left: 20%;
 `;
 const ErrorMessageContainer = styled.div`
   background-color: rgb(250, 181, 165);
   text-align: center;
-  font-size: 0.9em;
-  padding: 0.2em;
+  font-size: 1.2em;
+  padding: 0.3em;
   border-radius: 0.2em;
-  width: 60%;
-  margin-left: 20%;
-`;
-
-const StyledPara = styled.p`
   font-family: 'Open Sans', sans-serif;
-  font-size: 0.9em;
+  width: 60%;
 `;
 
 function FormPage({
@@ -107,30 +104,34 @@ function FormPage({
       <NavBar />
       <FormPageWrapper>
         <FormWrapper>
-          <h2>Add Your Own Text</h2>
+          <FormHeader>Add Your Own Text</FormHeader>
 
           {hasSubmitted && content && (
             <SuccessMessageContainer>
-              <StyledPara>
-                You have successfully submitted the text, go to
-                <a href="http://localhost:3000"> HOME PAGE </a>to view.
-              </StyledPara>
+              You have successfully submitted the text, go to
+              <Link to="/"> HOME PAGE </Link>
+              to view.
             </SuccessMessageContainer>
           )}
 
           {hasSubmitted && error && (
             <ErrorMessageContainer>
-              <StyledPara>
-                {error.message}. Please make sure to enter valid texts.
-              </StyledPara>
+              <div>{error.message}</div>
+              <div>Please make sure to enter valid texts.</div>
             </ErrorMessageContainer>
           )}
 
-          <form onSubmit={postData}>
-            <FormLabelWrapper>
-              <label htmlFor="input-content"> Text: </label>
-            </FormLabelWrapper>
-            <InputBox
+          <StyledForm onSubmit={postData}>
+            <FormLabel>
+              <label
+                htmlFor="input-content"
+                style={{ fontFamily: 'Open Sans' }}
+              >
+                {' '}
+                Text:{' '}
+              </label>
+            </FormLabel>
+            <FormInput
               id="input-content"
               onChange={changeInput}
               type="text"
@@ -139,16 +140,14 @@ function FormPage({
             />
 
             <div>
-              <InlineBlock>
-                <Button
-                  text="Submit"
-                  disabled={isSubmitting}
-                  onClick={postData}
-                />
-              </InlineBlock>
-              {isSubmitting && <InlineBlock>Submitting...</InlineBlock>}
+              <Button
+                text="Submit"
+                disabled={isSubmitting}
+                onClick={postData}
+              />
+              {isSubmitting && <div>Submitting...</div>}
             </div>
-          </form>
+          </StyledForm>
         </FormWrapper>
       </FormPageWrapper>
     </div>

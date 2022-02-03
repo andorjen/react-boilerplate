@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled.ul`
   @media (min-width: 500px) {
     columns: 2;
   }
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   }
   column-gap: 1em;
   background-color: transparent;
-  padding: 1em;
+  padding: 0 1em 1em 1em;
 `;
 
 export default Wrapper;

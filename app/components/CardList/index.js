@@ -7,12 +7,17 @@ import Wrapper from './Wrapper';
 import Card from '../Card';
 
 /** */
-function CardList({ contents, onClick }) {
+function CardList({ contents, onClick, lastAdded }) {
   return (
     <Wrapper onClick={onClick}>
-      {contents.map((content, idx) => (
-        <Card key={idx} content={content} onClick={onClick} />
-      ))}
+      {contents.map((content, idx) => {
+        if (content === lastAdded) {
+          return (
+            <Card key={idx} content={content} onClick={onClick} lastAdded />
+          );
+        }
+        return <Card key={idx} content={content} onClick={onClick} />;
+      })}
     </Wrapper>
   );
 }
@@ -20,6 +25,7 @@ function CardList({ contents, onClick }) {
 CardList.propTypes = {
   onClick: PropTypes.func,
   contents: PropTypes.array,
+  lastAdded: PropTypes.string,
 };
 
 export default CardList;
