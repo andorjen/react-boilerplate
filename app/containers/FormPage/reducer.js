@@ -14,6 +14,7 @@ export const initialState = {
   content: '',
 };
 
+/** All reducers for FormPage */
 function formReducer(state = initialState, { type, payload }) {
   switch (type) {
     case CHANGE_FORM_INPUT:

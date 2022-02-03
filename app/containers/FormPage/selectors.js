@@ -1,13 +1,18 @@
+/**
+ * FormPage Selectors
+ */
+
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
-// const selectRouter = state => state.router;
+
+const selectRouter = state => state.router;
 const selectForm = state => state.formReducer || initialState;
 
-// const makeSelectLocation = () =>
-//   createSelector(
-//     selectRouter,
-//     routerState => routerState.location,
-//   );
+const makeSelectLocation = () =>
+  createSelector(
+    selectRouter,
+    routerState => routerState.location,
+  );
 
 const makeSelectFormInput = () =>
   createSelector(
@@ -46,4 +51,5 @@ export {
   makeSelectHasSubmitted,
   makeSelectError,
   makeSelectContent,
+  makeSelectLocation,
 };

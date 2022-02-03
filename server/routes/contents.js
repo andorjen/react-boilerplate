@@ -8,7 +8,7 @@ const { BadRequestError } = require('../expressError');
 
 const router = new express.Router();
 
-// using require to synchronously load data here as current data is an array;
+// NOTE: using require to synchronously load data here as current data is an array;
 // if using database, need to use ORM and change view functions to async;
 const contentCollection = require('../data/data');
 

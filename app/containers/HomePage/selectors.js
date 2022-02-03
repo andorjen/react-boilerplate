@@ -1,3 +1,7 @@
+/**
+ * HomePage Selectors
+ */
+
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 const selectRouter = state => state.router;

@@ -1,7 +1,10 @@
 /*
- * Form Page
+ * Form Page (route: "/add")
  *
- * This is the first thing users see of our App, at the '/' route
+ * This is the Page that user could add a string to the database;
+ * Form will respond success/fail message based on form submission.
+ *
+ * App -> FormPage -> NavBar, Button...
  *
  */
 
@@ -29,13 +32,13 @@ import Button from '../../components/Button';
 import { formReducer } from './reducer';
 import formSaga from './saga';
 
+// ########### start: Extra styled components used for FormPage ##########
 const FormPageWrapper = styled.div`
   background-color: rgba(2, 219, 125, 0.7);
   min-height: 100vh;
   padding: 10%;
   font-family: 'Open Sans', sans-serif;
 `;
-
 const FormWrapper = styled.div`
   text-align: center;
   background-color: white;
@@ -47,14 +50,12 @@ const FormWrapper = styled.div`
   align-items: center;
   font-family: 'Open Sans', sans-serif;
 `;
-
 const FormHeader = styled.h2`
   background-color: rgb(250, 234, 112);
   padding: 0.5em;
   border-radius: 0.2em;
   width: 60%;
 `;
-
 const StyledForm = styled.form`
   width: 60%;
 `;
@@ -62,7 +63,6 @@ const FormLabel = styled.div`
   text-align: left;
   margin: 1em 0 0.3em 0;
 `;
-
 const FormInput = styled.textarea`
   text-align: left;
   width: 100%;
@@ -86,7 +86,11 @@ const ErrorMessageContainer = styled.div`
   font-family: 'Open Sans', sans-serif;
   width: 60%;
 `;
+// ########### end: Extra styled components used for FormPage ##########
 
+/**
+ * Renders FormPage Container
+ */
 function FormPage({
   hasSubmitted,
   isSubmitting,
@@ -97,11 +101,15 @@ function FormPage({
   content,
   reloadPage,
 }) {
+  // Inject reducer and saga to root
   useInjectReducer({ key: 'formReducer', reducer: formReducer });
   useInjectSaga({ key: 'formSaga', saga: formSaga });
+
+  // reload page on mount, to avoid page keep old success/failure messages
   useEffect(() => {
     reloadPage();
   }, []);
+
   return (
     <div>
       <NavBar />
@@ -148,7 +156,9 @@ function FormPage({
                 disabled={isSubmitting}
                 onClick={postData}
               />
-              {isSubmitting && <div>Submitting...</div>}
+              {isSubmitting && (
+                <div>Submitting... please do not refresh page</div>
+              )}
             </div>
           </StyledForm>
         </FormWrapper>
@@ -168,6 +178,7 @@ FormPage.propTypes = {
   reloadPage: PropTypes.func,
 };
 
+// map all related states to props
 const mapStateToProps = createStructuredSelector({
   formInput: makeSelectFormInput(),
   isSubmitting: makeSelectIsSubmitting(),
@@ -176,6 +187,7 @@ const mapStateToProps = createStructuredSelector({
   content: makeSelectContent(),
 });
 
+// map all dispatch actions as functions to props
 function mapDispatchToProps(dispatch) {
   return {
     changeInput: evt => {

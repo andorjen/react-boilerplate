@@ -1,8 +1,10 @@
 /*
- * HomePage
+ * HomePage (route: "/")
  *
- * This is the first thing users see of our App, at the '/' route
+ * This is the first thing users see of our App
+ * Displays a list of all strings
  *
+ * App -> HomePage -> NavBar, CardList...
  */
 
 import React, { useEffect, memo } from 'react';
@@ -13,20 +15,19 @@ import { compose } from 'redux';
 import styled from 'styled-components';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
-import {
-  makeSelectContents,
-  makeSelectLoading,
-  makeSelectError,
-  makeSelectNeedsLoading,
-} from './selectors';
 
 import { makeSelectContent } from '../FormPage/selectors';
 import CardList from '../../components/CardList';
 import NavBar from '../../components/NavBar';
 import LoadingIndicator from '../../components/LoadingIndicator';
 
+import {
+  makeSelectContents,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectNeedsLoading,
+} from './selectors';
 import { requestAllContents } from './actions';
-
 import homeReducer from './reducer';
 import homeSaga from './saga';
 
@@ -50,7 +51,7 @@ const HomeHeader = styled.div`
 const PaddedWrapper = styled.div`
   padding: 1em;
 `;
-/** Renders Home Page */
+/** Renders HomePage Container */
 function HomePage({
   needsLoading,
   isLoading,
@@ -59,9 +60,12 @@ function HomePage({
   getAllData,
   lastAdded,
 }) {
+  // Inject reducer and saga to root
   useInjectReducer({ key: 'homeReducer', reducer: homeReducer });
   useInjectSaga({ key: 'homeSaga', saga: homeSaga });
 
+  // load all data on page mount;
+  // and when needsLoading is set to true(after upload a new string on FormPage)
   useEffect(() => {
     if (needsLoading) getAllData();
   }, []);
@@ -81,7 +85,7 @@ function HomePage({
           </PaddedWrapper>
         )}
         {error && <h3>{error.message}</h3>}
-        {!error && !isLoading && <h2>All Cards</h2>}
+        {!error && !isLoading && <h2> All Cards </h2>}
       </HomeHeader>
 
       {!error && contents.length > 0 && (
@@ -99,6 +103,8 @@ HomePage.propTypes = {
   needsLoading: PropTypes.bool,
   lastAdded: PropTypes.string,
 };
+
+// map all related states to props
 const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectLoading(),
   error: makeSelectError(),
@@ -107,6 +113,7 @@ const mapStateToProps = createStructuredSelector({
   lastAdded: makeSelectContent(),
 });
 
+// map function getAllData to props, used in useEffect() on page mount
 function mapDispatchToProps(dispatch) {
   return {
     getAllData: () => {

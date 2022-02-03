@@ -9,20 +9,27 @@ import {
 import { BACKEND_URL, HOME_RELOAD_NEEDED } from '../HomePage/constants';
 import { makeSelectFormInput } from './selectors';
 
+/** Make Api Call to backend to post data into database */
 function* postNewContentToDatabase() {
+  // get data from formInput state, clean up by trimming any white spaces
   const data = yield select(makeSelectFormInput());
   const cleanupData = data.trim();
+
   try {
+    // make api call
     const res = yield call(axios.post, `${BACKEND_URL}/add`, {
       content: cleanupData,
     });
-    yield delay(1000);
+    yield delay(1000); // mimick the wait time for api call here, not necessary
+
+    // if success, pass res data to reducer, and set home page to need reload
     yield put({
       type: SUBMIT_FORM_SUCCESS,
       payload: { content: res.data.content },
     });
     yield put({ type: HOME_RELOAD_NEEDED });
   } catch (err) {
+    // if fail, pass error to reducer
     yield put({
       type: SUBMIT_FORM_ERROR,
       payload: { error: err.response.data.error },
@@ -30,6 +37,7 @@ function* postNewContentToDatabase() {
   }
 }
 
+/** performs api call on the latest SUBMIT_FORM action */
 function* formSaga() {
   yield takeLatest(SUBMIT_FORM, postNewContentToDatabase);
 }

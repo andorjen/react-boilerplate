@@ -1,3 +1,7 @@
+/**
+ * Actions for FormPage
+ */
+
 import {
   SUBMIT_FORM,
   SUBMIT_FORM_SUCCESS,
@@ -5,6 +9,7 @@ import {
   CHANGE_FORM_INPUT,
 } from './constants';
 
+/** function returns action with type CHANGE_FORM_INPUT, and payload of input */
 function changeFormInput(input) {
   return {
     type: CHANGE_FORM_INPUT,
@@ -12,12 +17,14 @@ function changeFormInput(input) {
   };
 }
 
+/** function returns action with type SUBMIT_INPUT */
 function submitForm() {
   return {
     type: SUBMIT_FORM,
   };
 }
 
+/** function returns action with type SUBMIT_FORM_SUCCESS, and payload of data */
 function submitFormSuccess(data) {
   return {
     type: SUBMIT_FORM_SUCCESS,
@@ -25,6 +32,7 @@ function submitFormSuccess(data) {
   };
 }
 
+/** function returns action with type SUBMIT_FORM_ERROR, and payload of error */
 function submitFormError(error) {
   return {
     type: SUBMIT_FORM_ERROR,

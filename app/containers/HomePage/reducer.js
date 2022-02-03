@@ -13,10 +13,12 @@ export const initialState = {
   lastAdded: '',
 };
 
+/** All reducers for home page */
 function homeReducer(state = initialState, { type, payload }) {
   switch (type) {
     case LOAD_ALL_CONTENTS:
       return { ...state, isLoading: true, needsLoading: false };
+
     case LOAD_ALL_CONTENTS_SUCCESS:
       return {
         ...state,
@@ -24,6 +26,7 @@ function homeReducer(state = initialState, { type, payload }) {
         contents: payload.contents,
         needsLoading: false,
       };
+
     case LOAD_ALL_CONTENTS_ERROR:
       return {
         ...state,
