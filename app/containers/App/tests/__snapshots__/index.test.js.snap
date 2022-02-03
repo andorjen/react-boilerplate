@@ -4,9 +4,38 @@ exports[`<App /> should render and match the snapshot 1`] = `
 <div>
   <Switch>
     <Route
-      component={[Function]}
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          },
+          "compare": null,
+          "displayName": "Connect(Component)",
+          "type": [Function],
+        }
+      }
       exact={true}
       path="/"
+    />
+    <Route
+      component={
+        Object {
+          "$$typeof": Symbol(react.memo),
+          "WrappedComponent": Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          },
+          "compare": null,
+          "displayName": "Connect(Component)",
+          "type": [Function],
+        }
+      }
+      exact={true}
+      path="/add"
     />
     <Route
       component={[Function]}

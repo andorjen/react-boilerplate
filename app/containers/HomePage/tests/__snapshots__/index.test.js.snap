@@ -1,9 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HomePage /> should render and match the snapshot 1`] = `
-<h1>
-  <span>
-    This is the HomePage container!
-  </span>
-</h1>
+<div>
+  <div>
+    <nav
+      class="NavBar__Nav-ar0vx-0 haeefk"
+    >
+      <a
+        aria-current="page"
+        class="active"
+        href="/"
+        style="background-color: rgba(140, 71, 245, 0.4); font-weight: bold;"
+      >
+        Home
+      </a>
+      <a
+        href="/add"
+      >
+        Add A Card
+      </a>
+    </nav>
+    <div
+      class="HomePage__HomeHeader-i81cdn-0 exSvdz"
+    >
+      <div
+        class="HomePage__PaddedWrapper-i81cdn-1 kFNdm"
+      >
+        <div
+          class="Wrapper-sc-12uw37d-0 bTWIVF"
+        >
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 enQIMS"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 jCxmwS"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 dyFXB"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 ikwUeP"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 hwlQRz"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 jjXxyb"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 jVExkJ"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 haCVIz"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 ghhiLZ"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 bCbqdt"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 hZPQMA"
+          />
+          <div
+            class="Circle__CirclePrimitive-ww56dy-0 fsGOmP"
+          />
+        </div>
+      </div>
+      <div
+        class="HomePage__PaddedWrapper-i81cdn-1 kFNdm"
+      >
+        <h2>
+          Loading...
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
 `;
