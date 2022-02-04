@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-/** */
+/** renders Nav bar */
 function NavBar() {
   const Nav = styled.nav`
     text-align: center;

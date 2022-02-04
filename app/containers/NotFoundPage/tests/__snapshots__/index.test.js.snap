@@ -1,9 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<NotFoundPage /> should render and match the snapshot 1`] = `
-<h1>
-  <span>
-    This is the NotFoundPage container!
-  </span>
-</h1>
+<div>
+  <div>
+    <nav
+      class="NavBar__Nav-ar0vx-0 haeefk"
+    >
+      <a
+        aria-current="page"
+        class="active"
+        href="/"
+        style="background-color: rgba(140, 71, 245, 0.4); font-weight: bold;"
+      >
+        Home
+      </a>
+      <a
+        href="/add"
+      >
+        Add A Card
+      </a>
+    </nav>
+    <div
+      class="NotFoundPage__Header-sc-8x6wqx-0 bUbrSb"
+    >
+      <h1
+        style="text-align: center;"
+      >
+        <span>
+          OOPS, WE CAN'T FIND WHAT YOU ARE LOOKING FOR
+        </span>
+      </h1>
+    </div>
+  </div>
+</div>
 `;
