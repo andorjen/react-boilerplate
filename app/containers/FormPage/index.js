@@ -188,7 +188,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 // map all dispatch actions as functions to props
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
     changeInput: evt => {
       dispatch(changeFormInput(evt.target.value));

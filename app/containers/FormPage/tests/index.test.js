@@ -7,9 +7,9 @@ import { MemoryRouter, browserHistory } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 // import axios from 'axios';
-
-import FormPage from '../index';
+import FormPage, { mapDispatchToProps } from '../index';
 import configureStore from '../../../configureStore';
+// import changeFormInput from '../actions';
 
 let store;
 
@@ -73,5 +73,15 @@ describe('<HomePage />', () => {
 
     const button = document.querySelector('button');
     expect(button).toHaveAttribute('disabled');
+  });
+});
+
+describe('mapDispatchToProps', () => {
+  describe('on change input', () => {
+    it('should be injected', () => {
+      const dispatch = jest.fn();
+      const result = mapDispatchToProps(dispatch);
+      expect(result.changeInput).toBeDefined();
+    });
   });
 });
