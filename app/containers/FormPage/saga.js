@@ -6,7 +6,7 @@ import {
   SUBMIT_FORM_SUCCESS,
 } from './constants';
 
-import { BACKEND_URL, HOME_RELOAD_NEEDED } from '../HomePage/constants';
+import { BACKEND_URL } from '../HomePage/constants';
 import { makeSelectFormInput } from './selectors';
 
 /** Make Api Call to backend to post data into database */
@@ -27,7 +27,6 @@ function* postNewContentToDatabase() {
       type: SUBMIT_FORM_SUCCESS,
       payload: { content: res.data.content },
     });
-    yield put({ type: HOME_RELOAD_NEEDED });
   } catch (err) {
     // if fail, pass error to reducer
     yield put({

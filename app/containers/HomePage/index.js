@@ -25,7 +25,6 @@ import {
   makeSelectContents,
   makeSelectLoading,
   makeSelectError,
-  makeSelectNeedsLoading,
 } from './selectors';
 import { requestAllContents } from './actions';
 import homeReducer from './reducer';
@@ -52,22 +51,14 @@ const PaddedWrapper = styled.div`
   padding: 1em;
 `;
 /** Renders HomePage Container */
-function HomePage({
-  needsLoading,
-  isLoading,
-  error,
-  contents,
-  getAllData,
-  lastAdded,
-}) {
+function HomePage({ isLoading, error, contents, getAllData, lastAdded }) {
   // Inject reducer and saga to root
   useInjectReducer({ key: 'homeReducer', reducer: homeReducer });
   useInjectSaga({ key: 'homeSaga', saga: homeSaga });
 
   // load all data on page mount;
-  // and when needsLoading is set to true(after upload a new string on FormPage)
   useEffect(() => {
-    if (needsLoading) getAllData();
+    getAllData();
   }, []);
 
   return (
@@ -100,7 +91,6 @@ HomePage.propTypes = {
   error: PropTypes.object,
   contents: PropTypes.array,
   getAllData: PropTypes.func,
-  needsLoading: PropTypes.bool,
   lastAdded: PropTypes.string,
 };
 
@@ -109,7 +99,6 @@ const mapStateToProps = createStructuredSelector({
   isLoading: makeSelectLoading(),
   error: makeSelectError(),
   contents: makeSelectContents(),
-  needsLoading: makeSelectNeedsLoading(),
   lastAdded: makeSelectContent(),
 });
 

@@ -4,14 +4,14 @@
 
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
-const selectRouter = state => state.router;
+// const selectRouter = state => state.router;
 const selectHome = state => state.homeReducer || initialState;
 
-const makeSelectLocation = () =>
-  createSelector(
-    selectRouter,
-    routerState => routerState.location,
-  );
+// const makeSelectLocation = () =>
+//   createSelector(
+//     selectRouter,
+//     routerState => routerState.location,
+//   );
 
 const makeSelectLoading = () =>
   createSelector(
@@ -31,17 +31,10 @@ const makeSelectContents = () =>
     globalState => globalState.contents,
   );
 
-const makeSelectNeedsLoading = () =>
-  createSelector(
-    selectHome,
-    globalState => globalState.needsLoading,
-  );
-
 export {
   selectHome,
-  makeSelectLocation,
+  // makeSelectLocation,
   makeSelectLoading,
   makeSelectError,
   makeSelectContents,
-  makeSelectNeedsLoading,
 };

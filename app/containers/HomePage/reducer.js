@@ -1,14 +1,13 @@
+/* eslint-disable indent */
 import {
   LOAD_ALL_CONTENTS,
   LOAD_ALL_CONTENTS_ERROR,
   LOAD_ALL_CONTENTS_SUCCESS,
-  HOME_RELOAD_NEEDED,
 } from './constants';
 
 // The initial state of the HomePage
 export const initialState = {
   isLoading: false,
-  needsLoading: true,
   contents: [],
   lastAdded: '',
 };
@@ -17,14 +16,13 @@ export const initialState = {
 function homeReducer(state = initialState, { type, payload }) {
   switch (type) {
     case LOAD_ALL_CONTENTS:
-      return { ...state, isLoading: true, needsLoading: false };
+      return { ...state, isLoading: true };
 
     case LOAD_ALL_CONTENTS_SUCCESS:
       return {
         ...state,
         isLoading: false,
         contents: payload.contents,
-        needsLoading: false,
       };
 
     case LOAD_ALL_CONTENTS_ERROR:
@@ -32,15 +30,7 @@ function homeReducer(state = initialState, { type, payload }) {
         ...state,
         isLoading: false,
         error: payload.error,
-        needsLoading: true,
       };
-
-    case HOME_RELOAD_NEEDED:
-      return {
-        ...state,
-        needsLoading: true,
-      };
-
     default:
       return state;
   }

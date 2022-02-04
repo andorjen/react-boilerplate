@@ -11,7 +11,7 @@ import {
 /** Make Api Call to backend to get all data */
 function* fetchAllData() {
   try {
-    yield delay(1000); // mimick the wait time for api call here, not necessary
+    yield delay(500); // mimick the wait time for api call here, not necessary
     const res = yield call(axios.get, BACKEND_URL);
 
     // if success, pass response data in reversed order to reducer
