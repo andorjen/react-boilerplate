@@ -28,7 +28,7 @@ This project is an implementation of the [React Boilerplate](https://github.com/
 1. run all tests: `npm test`
 2. run tests for one component/container: `npm test -- <ComponentName>`
 3. update snapshots: `npm test -- -u`
-4. run tests in watch mnode: `npm run test:watch`
+4. run tests in watch mode: `npm run test:watch`
 
 ## License
 
