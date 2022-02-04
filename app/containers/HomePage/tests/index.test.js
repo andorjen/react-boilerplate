@@ -47,6 +47,26 @@ describe('<HomePage />', () => {
     expect(container).toContainHTML('Home');
     expect(container).toContainHTML('Add A Card');
   });
+
+  it('should render success api call returned contents', async () => {
+    jest.clearAllMocks();
+    axios.get.mockResolvedValueOnce({
+      data: { contents: ['test1', 'test2', 'test3'] },
+    });
+    const { container } = render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <HomePage />
+        </MemoryRouter>
+      </Provider>,
+    );
+    const test1 = await waitForElement(() => getByText(container, 'test1'));
+    const test2 = await waitForElement(() => getByText(container, 'test2'));
+    expect(test1).toBeInTheDocument();
+    expect(test2).toBeInTheDocument();
+    expect(axios.get).toHaveBeenCalledTimes(1);
+  });
+
   // it('should render error message with failed api call', async () => {
   //   jest.clearAllMocks();
   //   const netWorkError = {
@@ -67,23 +87,4 @@ describe('<HomePage />', () => {
   //   const errorMsg = await waitForElement(() => getByText(container, 'Error'));
   //   expect(errorMsg).toBeInTheDocument();
   // });
-
-  it('should render success api call returned contents', async () => {
-    jest.clearAllMocks();
-    axios.get.mockResolvedValueOnce({
-      data: { contents: ['test1', 'test2', 'test3'] },
-    });
-    const { container } = render(
-      <Provider store={store}>
-        <MemoryRouter>
-          <HomePage />
-        </MemoryRouter>
-      </Provider>,
-    );
-    const test1 = await waitForElement(() => getByText(container, 'test1'));
-    const test2 = await waitForElement(() => getByText(container, 'test2'));
-    expect(test1).toBeInTheDocument();
-    expect(test2).toBeInTheDocument();
-    expect(axios.get).toHaveBeenCalledTimes(1);
-  });
 });
