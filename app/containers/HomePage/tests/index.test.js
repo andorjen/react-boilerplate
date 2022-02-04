@@ -78,7 +78,6 @@ describe('<HomePage />', () => {
     const netWorkError = {
       response: { data: { error: { message: 'Error' } } },
     };
-
     axios.get.mockRejectedValueOnce(netWorkError);
     const { container } = render(
       <Provider store={store}>

@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> should render and match the snapshot 1`] = `
+<div>
+  <div>
+    <nav
+      class="NavBar__Nav-ar0vx-0 haeefk"
+    >
+      <a
+        aria-current="page"
+        class="active"
+        href="/"
+        style="background-color: rgba(140, 71, 245, 0.4); font-weight: bold;"
+      >
+        Home
+      </a>
+      <a
+        href="/add"
+      >
+        Add A Card
+      </a>
+    </nav>
+    <div
+      class="FormPage__FormPageWrapper-depfhu-0 fLzIjr"
+    >
+      <div
+        class="FormPage__FormWrapper-depfhu-1 edPicO"
+      >
+        <h2
+          class="FormPage__FormHeader-depfhu-2 bDoYQN"
+        >
+          Add Your Own Text
+        </h2>
+        <form
+          class="FormPage__StyledForm-depfhu-3 bFKBor"
+        >
+          <div
+            class="FormPage__FormLabel-depfhu-4 icXOCo"
+          >
+            <label
+              for="input-content"
+              style="font-family: Open Sans;"
+            >
+               
+              Text:
+               
+            </label>
+          </div>
+          <textarea
+            class="FormPage__FormInput-depfhu-5 iBuQbY"
+            id="input-content"
+            placeholder="input length should be between 1 to 1000"
+            type="text"
+          />
+          <div>
+            <div
+              class="Wrapper-sc-5dsnpv-0 gPlEEe"
+            >
+              <button
+                class="Button__StyledButton-sc-1fkoyq4-0 dVtzVy"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;
